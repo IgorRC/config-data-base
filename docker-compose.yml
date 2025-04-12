@@ -1,0 +1,21 @@
+services:
+  database:
+    image: postgres:16
+    container_name: powip-database-v3
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: powip
+      TZ: America/Lima
+    volumes:
+      - powip_produccion_pgdata:/var/lib/postgresql/data
+      - ./backup.sql:/docker-entrypoint-initdb.d/backup.sql:ro
+    networks:
+      - app-network-production
+
+networks:
+  app-network-production:
+    driver: bridge
+
+volumes:
+  powip_produccion_pgdata:
