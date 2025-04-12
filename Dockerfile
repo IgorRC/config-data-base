@@ -1,9 +1,12 @@
 FROM postgres:16
-COPY .env /app/.env
-COPY init.sql /docker-entrypoint-initdb.d/
+
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=root
+ENV POSTGRES_DB=powip
+
+COPY backup.sql /docker-entrypoint-initdb.d/backup.sql
+
 EXPOSE 5432
-WORKDIR /app
-CMD export $(cat /app/.env | xargs) && docker-entrypoint.sh postgres
 
 #FROM postgres:16
 #COPY init.sql /docker-entrypoint-initdb.d/

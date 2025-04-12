@@ -21,7 +21,8 @@ Este proyecto utiliza Docker para gestionar una base de datos PostgreSQL. A cont
    Hacer referencia al nombre o id de la imagen para levantarlo
 
    ```bash
-      
+   docker run -d --name postgres_powip_container -p 5432:5432 postgres_powip
+   
    ```
 
 ## Comandos extras
